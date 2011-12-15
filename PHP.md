@@ -239,7 +239,7 @@ Argument with default options should come after required arguments.
 
 _Right:_
 
-``php
+```php
 <?php
 function funfun($arg1, $arg2, $arg3 = array()) {
   // Do something here.
