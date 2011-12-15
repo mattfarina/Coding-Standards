@@ -103,20 +103,34 @@ _Wrong:_
 
 ### Switch Statements
 
+Use a switch statement to test multiple conditions.
+
+It is a good idea to use switch statements instead of `if/else` when:
+
+* The test is a simple equality test.
+* There are more than two possibilities, OR
+* Multiple conditions map to the same action
+
+Do not us a switch statement when there are only one or two conditions.
+`if/else` is easier to read (and faster to execute).
+
 _Good:_
 
+```php
     switch (condition) {
       case 1:
         action1;
         break;
 
       case 2:
+      case 3:
         action2;
         break;
 
       default:
         defaultaction;
     }
+```
 
 ### do-while Statements
 
