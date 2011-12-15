@@ -28,6 +28,11 @@ _Bad:_
 
 Control structure can exceed 80 characters. They should be written simply and clearly.
 
+## Naming
+
+* Classes should be named in capital CamelCase.
+* Methods should be named in lower camelCase.
+
 ## Operators
 
 Operators that come between two values (e.g., +, -, =, !=, ==, >, <) shall have a space before and after the operator.
@@ -156,6 +161,20 @@ _Wrong:_
 
     $foo = bar ( $first, $second, $third );
 
+When a function call exceeds the 80 character limit, the call can be
+split across multiple lines, preferably by putting the arguments one on
+each line.
+
+```php
+<?php
+$very_long_variable_name = very_long_function_with_lots_of_arguments(
+  $argument1,
+  $argument2,
+  $argument3
+);
+?>
+```
+
 ## Function Declarations
 
 Between the name of the function and the first parentheses there is no space. There is, also, no space between the first parentheses and first argument or the last parentheses and last argument.
@@ -175,6 +194,130 @@ _All Kinds of Wrong:_
       // Don't even think of writing it like this or doing anything here if your
       // style looks remotely like this. Instead go put yourself in timeout.
     }
+
+_So wrong that if you write it this way we will disavow any knowledge of
+you_
+
+```php
+<?php
+function
+  funfun(
+    $arg1 = 123,
+    $arg2
+  )
+  {
+    return;
+  }
+?>
+```
+
+When a function declaration is very long, it can be declared on multiple
+lines. But the format should be as follows:
+
+```php
+<?php
+function my_inexplicably_and_ridiculously_long_function_name(
+    $argument1, // Double indent.
+    $argument2
+  ) {
+  // First line goes here.
+}
+?>
+```
+
+### Varargs
+
+PHP allows you to use "varargs"-style argument passing. In this case, a
+function allows an unspecified number of parameters. The caller is
+responsible for passing in the desired number of arguments.
+
+Varargs should be used when:
+
+* A function really does allow an arbitary number of arguments. Example:
+  `printf()`.
+* The function is passing unknown parameters to an inner function.
+
+Varargs should _not_ be used when:
+
+* A function has many, but not arbitrarily many, paramters. Varargs is not a shortcut for declaring
+  parameters.
+
+Other usage guidelines for varargs:
+
+If there are known parameters, they should be declared, leaving
+variable arguments at the end. This will improve the readibility of the
+code and also help IDEs that attempt to aid code completion.
+
+
+_Right:_
+```php
+<?php
+/**
+ * Echo everything that is passed in.
+ */
+function printAll() {
+  $args = func_get_args();
+  foreach ($args as $arg) {
+    print $arg . PHP_EOL;
+  }
+}
+?>
+```
+
+_Right:_
+
+```php
+<?php
+function slow_printf($format) {
+  $args = func_get_args();
+  array_shift($args);
+
+  vprintf($format, $args);
+}
+?>
+```
+
+_Okay:_
+
+```php
+<?php
+function mildCurry() {
+  $args = func_get_args();
+
+  array_unshift("some value", $args);
+
+  return call_user_func_array('foo', $args);
+}
+?>
+```
+
+_Wrong:_
+
+
+```php
+<?php
+function login() {
+  $args = func_get_args();
+  $name = $args[0];
+  $password = $args[1];
+  if (isset($args[2])) {
+    $backend = $args[2];
+  }
+
+  // Do stuff that has nothing to do with args.
+}
+?>
+```
+
+
+### Anonymous functions, lamdas, and closures
+
+PHP provides three ways of creating functions "inline":
+
+* A function can be declared in a string and executed as a `callback`
+  type.
+* A lambda function is declared inline.
+* A closure (with explicit context) is declared inline.
 
 ## Class Definitions
 
