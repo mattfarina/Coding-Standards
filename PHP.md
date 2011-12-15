@@ -106,6 +106,62 @@ _Wrong:_
         defaultaction;
     }
 
+#### Ternary vs. If/Else
+
+Ternary operators should be used in lieue of `if/else` statements only
+if:
+
+* There are actually two values
+* The ternary does not result in re-assigning a variable to itself
+* The line does not exceed the maximum line length
+* The values to be assigned are scaler (int, float, boolean, string,
+  etc.)
+
+Ternaries should _never_ be nested.
+
+Parens may be used for grouping whenever doing so increases readibility.
+
+Finally, there is nothing wrong with writing out an `if/else`. It is
+almost always more readible and rarely has counterintutive side effects.
+
+_Right:_
+
+
+```php
+<?php
+$foo = $use_magic ? 'magic' : 'no magic';
+?>
+```
+
+_Wrong:_
+
+
+```php
+<?php
+// Don't re-assign the same value
+$foo = empty($foo) ? $bar : $foo;
+?>
+```
+
+_Wrong:_
+
+
+```php
+<?php
+// Don't use complex types:
+$foo = $use_array ? $my_array : $my_object;
+?>
+```
+
+_Wrong and bug prone:_
+
+```php
+<?php
+$a = $b ? $c : $d ? $e : $g;
+?>
+```
+
+
 ### Switch Statements
 
 Use a switch statement to test multiple conditions.
@@ -338,7 +394,7 @@ When anonymous functions and closures are declared, they should follow the
 rules specified for other functions, allowing for the fact that they
 may be the values of variables or function arguments.
 
-One space should be left between the `function` or `closure` keyword and
+One space should be left between the `function` keyword and
 the opening paren for the arguments list, as well as between the
 closure's `use` keyword and its context: `function ($arg) use ($cxt) {}`
 
