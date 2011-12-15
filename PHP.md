@@ -183,17 +183,25 @@ Argument with default options should come after required arguments.
 
 _Right:_
 
-    function funfun($arg1, $arg2, $arg3 = array()) {
-      // Do something here.
-    }
+``php
+<?php
+function funfun($arg1, $arg2, $arg3 = array()) {
+  // Do something here.
+}
+?>
+```
 
 _All Kinds of Wrong:_
 
-    function funfun ( $arg1, $arg2 = array(), $arg3 )
-    {
-      // Don't even think of writing it like this or doing anything here if your
-      // style looks remotely like this. Instead go put yourself in timeout.
-    }
+```php
+<?php
+function funfun ( $arg1, $arg2 = array(), $arg3 )
+{
+  // Don't even think of writing it like this or doing anything here if your
+  // style looks remotely like this. Instead go put yourself in timeout.
+}
+?>
+```
 
 _So wrong that if you write it this way we will disavow any knowledge of
 you_
@@ -213,6 +221,8 @@ function
 
 When a function declaration is very long, it can be declared on multiple
 lines. But the format should be as follows:
+
+_Right:_
 
 ```php
 <?php
@@ -250,6 +260,7 @@ code and also help IDEs that attempt to aid code completion.
 
 
 _Right:_
+
 ```php
 <?php
 /**
@@ -297,6 +308,7 @@ _Wrong:_
 ```php
 <?php
 function login() {
+  // We know what the expected args are:
   $args = func_get_args();
   $name = $args[0];
   $password = $args[1];
