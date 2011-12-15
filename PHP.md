@@ -28,7 +28,7 @@ _Bad:_
 
 Control structure can exceed 80 characters. They should be written simply and clearly.
 
-## Naming
+## Naming Conventions
 
 * Classes should be named in capital CamelCase.
 * Methods should be named in lower camelCase.
@@ -326,10 +326,31 @@ function login() {
 
 PHP provides three ways of creating functions "inline":
 
-* A function can be declared in a string and executed as a `callback`
-  type.
+* A function can be declared in a string and passed to
+  `create_function()`.
 * A lambda function is declared inline.
 * A closure (with explicit context) is declared inline.
+
+The `create_function()` variety should only be used when absolutely
+necessary.
+
+When anonymous functions and closures are declared, they should follow the
+rules specified for other functions, allowing for the fact that they
+may be the values of variables or function arguments.
+
+One space should be left between the `function` or `closure` keyword and
+the opening paren for the arguments list, as well as between the
+closure's `use` keyword and its context: `function ($arg) use ($cxt) {}`
+
+_Right:_
+
+```php
+<?php
+usort($data, function ($a, $b) {
+  // Do something clever.
+});
+?>
+```
 
 ## Class Definitions
 
@@ -347,9 +368,10 @@ PHP provides three ways of creating functions "inline":
 
 ## Semicolons
 
-## Example URLs
+* Use them whenever they are required. DUH.
+* Use the one with a dot at the top and a comma at the bottom.
 
-## Naming Conventions
+## Example URLs
 
 ## References
 
