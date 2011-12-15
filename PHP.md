@@ -117,19 +117,23 @@ Do not us a switch statement when there are only one or two conditions.
 _Good:_
 
 ```php
-    switch (condition) {
-      case 1:
-        action1;
-        break;
+<?php
 
-      case 2:
-      case 3:
-        action2;
-        break;
+switch (condition) {
+  case 1:
+    action1;
+    break;
 
-      default:
-        defaultaction;
-    }
+  case 2:
+  case 3:
+    action2;
+    break;
+
+  default:
+    defaultaction;
+}
+
+?>
 ```
 
 ### do-while Statements
