@@ -4,17 +4,29 @@ This coding standard is one projects can use and reference for their own needs.
 
 ## Indenting and Whitespace
 
-Use and indentation of two (2) spaces and no tabs. This part of a coding standard can be debated on the level of arguing religions. As the creator of this spec I'm going with two spaces.
+Use and indentation of two (2) spaces and no tabs. This part of a coding
+standard can be debated on the level of arguing religions. As the creator
+of this spec I'm going with two spaces.
 
-Line endings should have no trailing space. I cannot believe I need to write this but all too often trailing spaces end up in a file.
+Line endings should have no trailing space. I cannot believe I need to write 
+this but all too often trailing spaces end up in a file.
 
-New lines shall use the Unix line ending (\n) and not the Windows line ending (\r\n). The [history of new lines](https://en.wikipedia.org/wiki/Newline#History) can be quite fascinating as our digital age is tied to line ending characters from an era of machines printing characters.
+New lines shall use the Unix line ending (\n) and not the Windows line ending
+(\r\n). The [history of new lines](https://en.wikipedia.org/wiki/Newline#History)
+can be quite fascinating as our digital age is tied to line ending characters
+from an era of machines printing characters.
 
 ## Line length and wrapping
 
-Limit lines to 80 characters. While screens are wider than they used to be 80 characters lets some of use use split screens, read files in terminals (when needed), and play nice with others who work this way. I suggest using a monospace font and having your text editor or IDE provide a gutter at 80 characters so you can easily see the cut off.
+Limit lines to 80 characters. While screens are wider than they used to be 80
+characters lets some of use use split screens, read files in terminals (when
+needed), and play nice with others who work this way. I suggest using a
+monospace font and having your text editor or IDE provide a gutter at 80 
+characters so you can easily see the cut off.
 
-Word wrapping is dangerous to use in code files as it can introduce hard to track down bugs. Turn off word wrapping in your text editor or IDE. For code see below.
+Word wrapping is dangerous to use in code files as it can introduce hard to
+track down bugs. Turn off word wrapping in your text editor or IDE. For code
+see below.
 
 _Right:_
 
@@ -290,6 +302,28 @@ function my_inexplicably_and_ridiculously_long_function_name(
 }
 ?>
 ```
+
+### Type Hinting
+
+PHP supports type hinting when defining functions. But as Rasmus and
+others are fond of pointing out, type hinting support comes at a
+(performance) cost.
+
+There is only one normative measure that is included with this standard:
+
+* If type hinting is NOT used, inline documentation blocks MUST indicate
+  what type is expected for each parameter.
+
+The current standard does not require one or another usage of type
+hinting, as there are pros and cons to each approach. However, the
+following guidelines will minimize unnecessary performance penalties:
+
+* Do not use type hinting on `protected` and `private` methods. The
+  callers of such methods will be in-object or in-class, and thus it is
+  reasonable to expect developers to be aware of the internals.
+* Type hinting can be advantageous for library APIs, where external
+  developers may use the library without having knowledge of the
+  library's internals.
 
 ### Varargs
 
