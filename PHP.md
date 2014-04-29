@@ -466,3 +466,5 @@ usort($data, function ($a, $b) {
 ## References
 
 Two other coding standards worth being familiar with and that have influenced this one (because they influenced me) are the [PEAR Coding Standard](http://pear.php.net/manual/en/standards.php) and the [Drupal Coding Standard](http://drupal.org/coding-standards).
+
+
